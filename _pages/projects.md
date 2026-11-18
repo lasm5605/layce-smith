@@ -19,7 +19,7 @@ horizontal: false
 
 To Do Ta Da is a single-page task manager for planning a day and checking things off. I took it from wireframe to deployed app in ten weeks, as part of moving from UX research toward data analytics and front-end development.
 
-<img width="2000" height="1405" alt="The finished To Do Ta Da dashboard, showing the To Do list, due dates, and recently completed tasks" src="https://github.com/user-attachments/assets/bfef1725-bf47-4381-94bd-6886dba7f4f1" />
+<img src="https://github.com/user-attachments/assets/bfef1725-bf47-4381-94bd-6886dba7f4f1" alt="The finished To Do Ta Da dashboard, showing the To Do list, due dates, and recently completed tasks" style="width: 100%; height: auto;" />
 
 ---
 
@@ -54,19 +54,19 @@ I started with a 10-week plan covering setup, core task features, persistence, f
 
 Before writing interface code, I sketched the layout I wanted to build.
 
-<img width="949" height="713" alt="Hand-drawn wireframe of the task dashboard layout" src="https://github.com/user-attachments/assets/35418a2a-5b4a-412b-8674-d06ad5436840" />
+<img src="https://github.com/user-attachments/assets/35418a2a-5b4a-412b-8674-d06ad5436840" alt="Hand-drawn wireframe of the task dashboard layout" style="width: 80%; height: auto; display: block; margin: 0 auto;" />
 
 ### 3. First prototype with Material UI
 
 I set up the project with Node.js and Vite, whose live reloading made debugging much faster. Then I built a first interface using Material UI's list, checkbox, text field, and container components. It got the look close to my wireframe quickly.
 
-<img width="1914" height="958" alt="Early prototype built with Material UI components" src="https://github.com/user-attachments/assets/952706c0-0ba1-4e5c-b471-30b3e0f69468" />
+<img src="https://github.com/user-attachments/assets/952706c0-0ba1-4e5c-b471-30b3e0f69468" alt="Early prototype built with Material UI components" style="width: 100%; height: auto;" />
 
 ### 4. Rethinking the architecture
 
 The prototype had a basic flaw: each component held its own data, so any re-render wiped the task list. I stepped back from visual design and planned how data should move through the app.
 
-<img width="641" height="686" alt="Diagram of component hierarchy and state flow in the app" src="https://github.com/user-attachments/assets/329f6f88-0119-4d9c-95b3-9457a3879412" />
+<img src="https://github.com/user-attachments/assets/329f6f88-0119-4d9c-95b3-9457a3879412" alt="Diagram of component hierarchy and state flow in the app" style="width: 60%; height: auto; display: block; margin: 0 auto;" />
 
 In React, state that several components share lives in their nearest common parent, and data flows down as props. In my app:
 
@@ -82,13 +82,13 @@ I rebuilt the components to follow this plan, so every feature after it had a cl
 
 With state in place, I implemented adding, editing, deleting, and completing tasks, plus switching between the two views.
 
-<img width="565" height="481" alt="Functional version of the app with To Do and Ta Da tabs" src="https://github.com/user-attachments/assets/81c58d12-1ccb-46f6-80cf-264e39bcdc3c" />
+<img src="https://github.com/user-attachments/assets/81c58d12-1ccb-46f6-80cf-264e39bcdc3c" alt="Functional version of the app with To Do and Ta Da tabs" style="width: 60%; height: auto; display: block; margin: 0 auto;" />
 
 ### 6. Saving data between sessions
 
 React's `useState` keeps data across re-renders but not page refreshes. I wrote a custom hook that saves the task list and the active filter to localStorage and loads them back on page load. I also rebuilt the visual design with plain HTML in the components and a single stylesheet.
 
-<img width="1505" height="776" alt="Browser developer tools showing saved task and filter data in localStorage" src="https://github.com/user-attachments/assets/e250dbe6-9db1-4eba-8b87-9111f397fcc8" />
+<img src="https://github.com/user-attachments/assets/e250dbe6-9db1-4eba-8b87-9111f397fcc8" alt="Browser developer tools showing saved task and filter data in localStorage" style="width: 100%; height: auto;" />
 
 ### 7. Prioritization, due dates, and subtasks
 
