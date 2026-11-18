@@ -2,22 +2,23 @@
 layout: about
 title: about
 permalink: /
-subtitle: UX Research Analyst/Aspiring Data Engineer
+subtitle: UX Researcher → Data Analyst · CS Student at CU Boulder
 
 profile:
   align: right
   image: prof_pic.jpg
   image_circular: false
-  more_info: >
-    Phone: 214-317-6467<br>
-    Email: <a href="mailto:laycedsmith@gmail.com">laycedsmith@gmail.com</a><br>
-    <a href="https://www.linkedin.com/in/laycesmith">LinkedIn</a>
 ---
 
-My name is Layce Smith. I currently hold a bachelor's degree in English from the University of Texas at Austin and am working on a second degree in computer science from the University of Colorado Boulder. I have 2+ years of experience as a UX Research Analyst. 
+I’m a UX researcher turned data analyst, finishing a second degree in computer science at the University of Colorado Boulder. After 2+ years studying how people use products, I’m now building the tools that help teams understand their data, from interactive dashboards to the code behind them.
 
-**Languages:** Python, C++, JavaScript, Bash, SQL (SQLite)
-**Web development:** React (with Vite), Flask, HTML/CSS, SVG
-**Data & visualization:** Tableau, data cleaning and exploratory analysis
-**Tools & practices:** Git/GitHub, GitHub Pages/Jekyll, unit testing (Python unittest), test-driven development
-**UX research:** user interviews, usability testing, synthesis, maintaining repository
+I hold a B.A. in English from the University of Texas at Austin, which shows in how I communicate findings: clearly, and for the people who need to act on them.
+
+I’m currently looking for roles in data analytics and front-end development.
+
+### Skills
+- **Languages:** Python, C++, JavaScript, Bash, SQL (SQLite)
+- **Web development:** React (with Vite), Flask, HTML/CSS, SVG
+- **Data & visualization:** Tableau, data cleaning and exploratory analysis
+- **Tools & practices:** Git/GitHub, GitHub Pages/Jekyll, unit testing (Python unittest), test-driven development
+- **UX research:** user interviews, usability testing, synthesis, maintaining repository
