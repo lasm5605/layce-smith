@@ -2,7 +2,7 @@
 layout: page
 title: To Do Ta Da
 description: A React task dashboard, from wireframe to deployment
-img: assets/img/to-do-ta-da.png
+img: assets/img/tdtd-screen.png
 importance: 1
 category: web
 ---
