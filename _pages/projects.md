@@ -2,172 +2,117 @@
 layout: page
 title: projects
 permalink: /projects/
-description: Currently working on...
+description: Selected work in front-end development, data, and UX.
 nav: true
 nav_order: 3
 display_categories: [work, fun]
 horizontal: false
 ---
 
-# Building a React Task Dashboard
+# To Do Ta Da: A React Task Dashboard
 
-## Week 1 - Project Proposal
+**[Live demo](https://leafy-capybara-0d6161.netlify.app/)** · **[Source code](https://github.com/lasm5605/ReactTaskDashboard)**
 
-### Vision Statement
+**Role:** Designer and developer (solo project)
+**Timeline:** 10 weeks
+**Stack:** React, Vite, Material UI, dnd-kit, CSS, localStorage, Netlify
 
-My goal is to transition from UX Research into Data Analytics by developing the skills to build custom, interactive dashboards. While tools like Power BI and Tableau are valuable for internal reporting, learning React will allow me to create more flexible, fully customized applications. Since I am covering other analytics tools in a separate course this semester, this project will focus on building a dashboard from the ground up.
+To Do Ta Da is a single-page task manager for planning a day and checking things off. I took it from wireframe to deployed app in ten weeks, as part of moving from UX research toward data analytics and front-end development.
 
-### Motivation
+<img width="2000" height="1405" alt="The finished To Do Ta Da dashboard, showing the To Do list, due dates, and recently completed tasks" src="https://github.com/user-attachments/assets/bfef1725-bf47-4381-94bd-6886dba7f4f1" />
 
-I am excited to take a product from initial design through functional implementation. My experience has focused on designing user interfaces and researching usability; this project will allow me to expand those skills by bringing a design to life through code. Completing a fully functional application will be both a valuable learning experience and a rewarding professional accomplishment.
+---
 
-### Risks and Mitigation
+## Why I built it
 
-Key project risks include scope creep, data loss, complex state management, and software bugs. I plan to mitigate these risks by:
+Tools like Tableau and Power BI are great for standard reporting, but they limit how far you can customize an interface. I wanted to learn to build interactive dashboards from the ground up, and to carry a product all the way from design through working code. My background is in researching and designing interfaces. This project was my chance to build one myself.
 
-- **Managing scope:** Prioritizing essential features within the 10-week timeline and pursuing additional functionality only if time allows.
+## Key features
 
-- **Preventing data loss:** Using the browser's localStorage API to preserve task data between sessions.
+- **Add, edit, and delete tasks**, with optional due dates and overdue warnings
+- **Drag-and-drop prioritization**: the top of the list is the highest priority, and new tasks go to the bottom until moved
+- **Collapsible subtasks** for breaking a big task into steps (e.g. a grocery list under "go grocery shopping")
+- **To Do / Ta Da views**: checking off a task moves it to the Ta Da view with a completion timestamp, and unchecking it returns it to its original position
+- **Recently completed sidebar** showing the five latest finished tasks, newest first
+- **Time-of-day greeting** with the current date and time
+- **Automatic saving**: tasks persist between sessions with no account or backend
 
-- **Simplifying state management:** Following React best practices by minimizing redundant state and deriving values from existing data when possible.
+---
 
-- **Reducing bugs:** Developing incrementally and testing frequently to identify and resolve issues early.
+## Process
 
-### Project Assessment and Timeline
+### 1. Planning and scope
 
-The project will follow a 10-week development plan, with flexibility to adjust as needed.
+I started with a 10-week plan covering setup, core task features, persistence, filtering, visual design, testing, and deployment. I flagged four risks early and planned for each:
 
-**Week 1:** Set up the React project using Vite in VS Code.
+- **Scope creep:** build the essential features first, and add extras only if time allowed
+- **Data loss:** save tasks to the browser's localStorage
+- **Complex state:** follow React best practices, keeping as little state as possible and deriving values from it
+- **Bugs:** build in small steps and test often
 
-**Week 2:** Create a GitHub repository, sketch the interface, and learn React components, props, and state.
+### 2. Wireframing
 
-**Week 3:** Build the interface with HTML and CSS; implement task creation and deletion.
+Before writing interface code, I sketched the layout I wanted to build.
 
-**Week 4:** Add task editing and completion functionality.
+<img width="949" height="713" alt="Hand-drawn wireframe of the task dashboard layout" src="https://github.com/user-attachments/assets/35418a2a-5b4a-412b-8674-d06ad5436840" />
 
-**Week 5:** Implement task priorities and due dates.
+### 3. First prototype with Material UI
 
-**Week 6:** Use localStorage to persist task data between sessions.
+I set up the project with Node.js and Vite, whose live reloading made debugging much faster. Then I built a first interface using Material UI's list, checkbox, text field, and container components. It got the look close to my wireframe quickly.
 
-**Week 7:** Add filtering and sorting for overdue, high-priority, and completed tasks.
+<img width="1914" height="958" alt="Early prototype built with Material UI components" src="https://github.com/user-attachments/assets/952706c0-0ba1-4e5c-b471-30b3e0f69468" />
 
-**Week 8:** Build a dashboard displaying remaining, completed, and overdue tasks; refine the visual design.
+### 4. Rethinking the architecture
 
-**Week 9:** Test functionality, resolve bugs, improve usability, and consider an additional feature if time permits.
+The prototype had a basic flaw: each component held its own data, so any re-render wiped the task list. I stepped back from visual design and planned how data should move through the app.
 
-**Week 10:** Deploy the application, document the project in GitHub with a README and screenshots, and add it to my portfolio.
+<img width="641" height="686" alt="Diagram of component hierarchy and state flow in the app" src="https://github.com/user-attachments/assets/329f6f88-0119-4d9c-95b3-9457a3879412" />
 
-This timeline provides a structured path toward a functional, polished application while allowing for adjustments based on progress and emerging challenges.
+In React, state that several components share lives in their nearest common parent, and data flows down as props. In my app:
 
+- **`App`** owns the shared state (the task list and the selected filter) and derives the visible tasks from them. It also holds the add, edit, and delete functions and passes them down.
+- **`FilterTabs`** displays the To Do and Ta Da tabs and reports which one is clicked.
+- **`TaskList`** renders the visible tasks.
+- **`TaskForm`** gets only the add function and manages the text being typed.
+- **`TaskItem`** tracks only whether it's being edited.
 
-## Week 2 - Setting up the Environment
+I rebuilt the components to follow this plan, so every feature after it had a clear place for its data.
 
-I began my project by setting up node.js as my runtime environment. Then I installed the React javascript library for components, and I installed Vite to act as both the development server and eventual build tool. From there, I was able to download a React frontend template and bundle and serve the code through the Vite development server. Vite has proven to be a great choice because it shows live updates in the development environment, which has simplified the debugging process considerably.
+### 5. Core functionality
 
-## Week 3 - Version Control & Basic UI Design
+With state in place, I implemented adding, editing, deleting, and completing tasks, plus switching between the two views.
 
-In order to use GitHub for version control, I had to connect my locally saved project folders to a GitHub repository where I can push new commits. This required me to install Git on my computer and then set up a remote connection with the bash shell. Then, in following my project timeline, I went ahead and drew a wireframe of the application interface that I want to create.  
+<img width="565" height="481" alt="Functional version of the app with To Do and Ta Da tabs" src="https://github.com/user-attachments/assets/81c58d12-1ccb-46f6-80cf-264e39bcdc3c" />
 
-<img width="949" height="713" alt="image" src="https://github.com/user-attachments/assets/35418a2a-5b4a-412b-8674-d06ad5436840" />
+### 6. Saving data between sessions
 
-My next step will be to dig into the React docs to learn more about their UI components and how to get started building out a simple interface.
+React's `useState` keeps data across re-renders but not page refreshes. I wrote a custom hook that saves the task list and the active filter to localStorage and loads them back on page load. I also rebuilt the visual design with plain HTML in the components and a single stylesheet.
 
-## Week 4 - Building the Interface
+<img width="1505" height="776" alt="Browser developer tools showing saved task and filter data in localStorage" src="https://github.com/user-attachments/assets/e250dbe6-9db1-4eba-8b87-9111f397fcc8" />
 
-Learning more about the React Components last week helped me better understand why components are so useful for building a task-management dashboard. Building a task dashboard entirely in HTML would require a lot of repetition since many of the dashboard features are things that appear again and again in very similar containers (individual tasks, task status, groups of tasks in lists, etc.). Components are javascript functions that return html code. Because they are functions, they can be reused, and any changes made to the function applies across all uses, which removes the problem of making the same change across large blocks of HTML code. Furthermore, "props" (or properties) are another React feature that pairs with components. Props allow for different values to be passed into different iterations of a component, which is what makes the components reusable. Moving forward this week, I will be working on setting up the various components that I will need for my dashboard.
+### 7. Prioritization, due dates, and subtasks
 
-## Week 5 - Implementing a Task Component and Task Lists
+- **Prioritization:** I used dnd-kit, a well-maintained drag-and-drop library for React. Each task has a drag handle. Because only one view shows at a time, my reorder function rearranges just the visible tasks and slots them back into the full list, so hidden tasks keep their order.
+- **Due dates:** the app uses the browser's built-in date and time picker, opened from a calendar icon that matches the app's style. The due date is stored as another property of the task.
+- **Subtasks:** these reuse most of the task item logic as a second, collapsible level under any task.
 
-For the task component, I started by writing a simple function that displayed an item and a checkbox. The function was contained its own file and was set as the export default, so I could easily call the function in another file later. Then I realized that I can use Material UI, which is an open-source React component library that implements Google's Material Design. Material UI already has a checkbox component, so I copied the code into my own taskitem.jsx file, set it as the export default, and successfully imported it into my app.jsx file. However, I then discovered that Material UI also has a List component with a checkbox as a secondary option, so I decided to use that instead since it killed two birds with one stone (building a list and the individual list items with corresponding checkboxes). Then, I also saw that Material UI offers a text field component that allows user input, so I called that within the List component. Finally, I saw that Material UI has a container component, so I set my task list inside a container and added a button at the top of the container. This got me closer to my original dashboard design. I was also able to play around with the CSS elements within the javascript files to match colors and adjust spacing, alignment, etc.
+I had planned a "tasks remaining" counter, but dropped it in favor of subtasks, which I found more useful in my own daily lists.
 
-My next steps are as follows:
-* implement add and remove tasks feature
-* create a second container to hold completed tasks
+### 8. Deployment
 
-<img width="1914" height="958" alt="image" src="https://github.com/user-attachments/assets/952706c0-0ba1-4e5c-b471-30b3e0f69468" />
+Because the app is static and stores data in the browser, it can run on any static host. I deployed it on Netlify straight from the GitHub repository. Deployment took far less time than I'd budgeted, so I used the extra time on subtasks, the time-of-day greeting, and typography and spacing.
 
-## Week 6 - Rethinking Data Management/Information Flow
+---
 
-Last week I focused on familiarizing myself with the Material UI React Component Library to get an idea of what the UI could look like. The problem with the component-only interface, however, was that data was being handled within the components themselves rather than in state. Therefore, any rerender would result in a total data reset. I realized that configuration wouldn’t work for this project since a task management dashboard (at least how I am envisioning it) needs to support dynamic data that doesn’t get lost when a user closes their browser.
+## What I learned
 
-Here is what I learned about state:
+- **Plan state before styling.** My first prototype looked right but couldn't hold onto data. Mapping data flow first made every later feature easier to add.
+- **Use libraries, but understand them.** Material UI sped up prototyping, but I got more control by writing my own HTML and CSS once I knew what the app needed.
+- **Cut features with a reason.** Dropping the counter for subtasks came from using the app myself, much like a usability finding.
+- **UX research skills carry over to engineering.** Wireframing, scoping, and iterating on my own feedback shaped the build as much as the code did.
 
-In React, parent/child relationships define how components (javascript functions) are configured in a tree, and this configuration is critical to state management, as state is shared by moving it up to the nearest common parent. Information flows down from parent to child: the parent controls a child's props, which are the data and functions it hands down. The child can display that data and call those functions to request changes, but the state itself stays with the parent.
+## Next steps
 
-Rather than fixate on an aesthetic interface design, as I had done before, I built out a functional interface design.
-
-<img width="641" height="686" alt="State Management Diagram" src="https://github.com/user-attachments/assets/329f6f88-0119-4d9c-95b3-9457a3879412" />
- 
-The parent component of my React dashboard is App. It passes data and functions to its children as props, which can be any JavaScript value. App owns two pieces of shared state: the tasks array and the selected filter. From these it calculates visibleTasks, which it passes to TaskList. It passes filter and a setter function to FilterTabs, which only displays the "To Do" and "Ta Da" buttons and reports which one is clicked. App also holds the functions that add, edit, and delete tasks and passes them down, so children can request changes without owning the data. TaskForm receives only the add function and keeps its own title state for the text being typed, and each TaskItem keeps its own editing state. App is the nearest common parent of the components that share tasks and filter, which is why that state lives there. 
- 
-NOTE: Eventually, tasks will be saved to localStorage so they persist after a refresh. 
-
-With all of this in mind, I have started to reconfigure my component files. Although it was nice to play around with the Material UI React Components last week, the way I configured the components in order to make that visual does not align with the state management plan above. I will go back and build out the functionality and then can focus on reimplementing the design once I know that the functions are communicating correctly. 
-
-## Week 7 - Project Mid-Semester Report
-
-The functional interface design I created last week has helped me build my app to handle data in state (using the useState hook) rather than just within the components. In doing so, my app now has the following functionalities: 
-
-- Input task title and add to the list of “To Do” tasks
-- Edit each “To Do” task and either save changes or exit out of editing mode
-- Delete each “To Do” task
-- Click the checkbox of each “To Do” task, which assigns it to the “Ta Da” filter view
-- Toggle between “To Do” and “Ta Da” filter tab views
-
-<img width="565" height="481" alt="image" src="https://github.com/user-attachments/assets/81c58d12-1ccb-46f6-80cf-264e39bcdc3c" />
-
-**Note:** adding a new task on the “Ta Da” filtered view adds a new task to the “To Do” view.
-
-The functions I have already implemented seem to render correctly at this point. However, all the data disappears when the page refreshes. Therefore, the next thing I need to learn about and implement is saving the data to localStorage. Based on what I’ve read so far, there is a way to create custom hooks in React, and that seems to be the best way to save to localStorage, so I will begin researching and coding that functionality next. Once I have that key part of the project finished, then I plan to go back and work on adding a task priority feature and a task completion timestamp feature before making the UI look a little more polished. As of now, I feel a little ahead of schedule and am hoping to have time to come up with one bonus feature to add. Overall, I am feeling really good about what I’ve got so far.
-
-## Week 8 - A New Look & Saving Locally!
-
-Last week, I spent time learning more about state management in React. I learned that React has a built-in hook called useState, which lets components "remember" information but only upon rerenders--not total refreshes of the web page. Therefore, I had determined that I needed to save the information locally. I had also learned last week that React allows you to build custom hooks, and since a "save locally" hook doesn't already exist in the React documentation, I determined that I would need to build one. 
-
-The only values I really need my app to store at this time are the task items themselves and which filtered view they live under (incomplete or complete). That made the process of saving locally much easier, I think, and it was a morale boost to check local storage in the browser and see my 'task' and 'filter' keys and their corresponding data listed (see image below). 
-
-<img width="1505" height="776" alt="image" src="https://github.com/user-attachments/assets/e250dbe6-9db1-4eba-8b87-9111f397fcc8" />
-
-For anyone following along with my progress. You may notice that I also went ahead and cleaned up the UI and made it look a little more design-y. This was a matter of adding html directly into my react component .jsx files, and then I have a single separate .css file for making it all look nice. 
-
-One really fun, kind of last-minute addition is the date and time feature on that page. JavaScript, I learned, has a built-in class called Date that is available in every JavaScript environment, including browsers and Node. It pulls the date directly from the user's computer. It was an easy implementation that I think adds a lot to the overall experience.
-
-Since I've already got the data I need saving locally, and I have a firmer grasp on how to implement html and css for a more polished looking app, I feel a little ahead of schedule. There are a few things I need to tweak in the UI, but I think I will actually spend most of next week trying to add a feature for prioritizing tasks. I have somewhat of an idea of how I will do this, but I still anticipate it taking me a while to figure out.
-
-## Week 9 - Prioritization and Due Date Features Added
-
-Last week, I focused on saving the task list and filters to the browser’s local storage so the user’s session persists after a page refresh. I also added a date/time feature to the dashboard and worked on the .css file and on the html within the return sections of the .jsx files to make the UI appear more polished. This week, I decided to implement a new feature: task prioritization.
-
-I decided to go the drag-and-drop route for implementing a task prioritization feature in my app. The idea is that the top priority is always the first item in the list, and new items go to the last position by default (lowest priority) unless the user drags and drops them somewhere else. The most popular, actively maintained drag-and-drop library for React seems to be dnd-kit, so I started by installing @dnd-kit/react for sortable lists and @dnd-kit/helpers for the ability to move items in the list.
-
-Dnd-kit has a built-in React component called DragDropProvider that wraps around any other component (the task list, in this case) and turns on drag and drop for everything inside it (the items in the task list). move is one of the helper functions from dnd-kit. It takes the array and the drag event and returns a new array with the dragged item in its new position. It reads from the event which task was dragged and where it landed, so no calculations are involved.
-
-The prioritization feature required changes to the task item component. I added a ref to the element that should move (the entire task item) and a handleRef to the part the user clicks and drags. The task items now display a sort icon to show that they can be moved to change priority, and this icon gets the handleRef. To make it work, I also added a new function to my main app file that does a few important things. First, it stops running early if a drag is cancelled (the item doesn’t make it to a drop point). Then it takes the tasks on screen and the drag event, and returns a new array with the dragged task in its new position. Finally, because my task list shows only To Do or only Ta Da tasks at a time, the function reorders just the visible tasks and slots them back into the full list, so the hidden tasks don’t get scrambled.
-
-This week, I also cleaned up the “Ta Da” view. Tasks under this filter now show only a checkbox, a timestamp of completion, and a delete button for the user to delete the completed tasks once they no longer want to see them. (Note: Unchecking the box still returns the task to the “To Do” list in its original position.) The completed items appear in the “Ta Da” view in the order in which they were prioritized on the “To Do” side. However, I now have the 5 most recent  “Ta Da” tasks appearing in the right-hand column of the screen in the order in which they were actually completed (most recent to most distant). I might just keep this as an alternative to having a  “show all tasks” filter since I really don’t thing 3 tabs  in the left column (To Do, Ta Da, and All) would have as much impact as just the 2 (To Do and Ta Da).
-
-I also added a due date feature, which I was actually supposed to implement earlier in the project but forgot about. The easiest way to do this was by making due date another property of a task (edit and delete being other properties). My app uses a date-time picker that’s built into the browser, but I actually made the input box invisible and have the user open the calendar picker by clicking on a calendar icon that matches the rest of the app’s aesthetic. The selected due date and time get passed back to the main app as just another task property in the list of tasks. 
-
-Originally, I planned on adding a counter to the dashboard–something that says “only {count] number of tasks to go!” However, I don’t really see the counter as a particularly useful feature at this time. Therefore, I would rather spend my time next week working on a sublist feature. For example, if one of the tasks on the list is “go grocery shopping,” I want the user to be able to add a secondary, collapsible list that contains the grocery store items to get.
-
-<img width="2000" height="1405" alt="image" src="https://github.com/user-attachments/assets/bfef1725-bf47-4381-94bd-6886dba7f4f1" />
-
-## Week 10 - Finishing Touches and Deployment
-
-According to my initial project proposal, this week was dedicated to deploying my app so users could access it. I’d been dreading this part of the project because I didn’t really know what deployment would involve, but it turned out to be one of the easiest steps. Because my task dashboard is a single-page app that saves tasks locally in the user’s browser, it can be deployed on any static hosting site. I chose Netlify because it works well with React and Vite. Deploying was as simple as signing up for Netlify with my GitHub account and choosing which repository to deploy. Netlify handled the rest.
-
-Since deployment took far less time than I expected, I used the extra time to improve the look and functionality of the app. First, I added subtasks to each task item. This feature became important to me over the course of the project, as I kept making to-do lists and wanting to break some tasks down further. Implementing it was fairly simple, since it’s essentially a second level of task items and much of the code already existed. I also made the welcome message more engaging and dynamic: it now changes depending on the time of day, and a small animated coffee mug appears next to the morning message. Beyond that, I made a few smaller tweaks to the UI, such as fonts and spacing.
-
-I definitely plan to keep working on this project even after the class ends. I would like to implement a progress ring showing how many of a day's tasks are done. I’d also like to add more fun animations and interactive elements, including an option for users to choose from different color schemes and background themes. Eventually, it might even be nice to have
-
-accounts and a backend so lists sync across devices.
-
-If you’d like to try it out, here’s the link to the task dashboard: https://leafy-capybara-0d6161.netlify.app/
-
-
-
-
-
-
-
-
+- A progress ring showing how much of the day's list is done
+- Selectable color schemes and themes
+- User accounts and a backend so lists sync across devices
