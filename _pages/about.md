@@ -16,15 +16,8 @@ profile:
 
 My name is Layce Smith. I currently hold a bachelor's degree in English from the University of Texas at Austin and am working on a second degree in computer science from the University of Colorado Boulder. I have 2+ years of experience as a UX Research Analyst. 
 
-**Coding Languages:**
-* Python
-* C++
-
-**Tools:**
-* PowerBi
-* Tableau
-* Marvin UX Repository
-* Userlytics
-* Figma
-* Google Workspace
-* Microsoft 365
+**Languages:** Python, C++, JavaScript, Bash, SQL (SQLite)
+**Web development:** React (with Vite), Flask, HTML/CSS, SVG
+**Data & visualization:** Tableau, data cleaning and exploratory analysis
+**Tools & practices:** Git/GitHub, GitHub Pages/Jekyll, unit testing (Python unittest), test-driven development
+**UX research:** user interviews, usability testing, synthesis, maintaining repository
