@@ -6,7 +6,7 @@ description: Selected work in front-end development, data, and UX.
 nav: true
 nav_order: 3
 display_categories: [web, data, systems]
-horizontal: true
+horizontal: false
 ---
 
 <div class="projects">
