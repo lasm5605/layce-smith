@@ -33,9 +33,6 @@ cv:
         studyType: Bachelor of Science
         start_date: 2024
         end_date: 2027
-        highlights:
-          - Description 1.
-          - Description 2.
 
     Experience:
       - company: EasyPost
@@ -45,22 +42,15 @@ cv:
         end_date: September 2026
         summary: forthcoming
         highlights:
-          - forthcoming
-          - forthcoming
+          - Contributed to product road maps and UX design mock ups by conducting quantitative and qualitative research via internal and user interviews/surveys, competitive and market research, product engagement analysis tools, etc.
+          - Documented and present key data and insights to foster interdepartmental alignment
 
   
     Certificates:
       - name: Google UX Design Professional Certificate
-        date: 
+        date: 2023
         issuer: Coursera
-        icon: fa-solid fa-location-dot
 
 
-    References:
-      - name: Rachel Stern
-        icon: fa-solid fa-laptop
-        reference: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum, diam quis convallis euismod, arcu mi ullamcorper lorem, a vestibulum nunc magna at sem. Sed in risus ac felis varius blandit.
-
-      - name: TBD
         icon: fa-solid fa-thumbtack
         reference: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum, diam quis convallis euismod, arcu mi ullamcorper lorem, a vestibulum nunc magna at sem. Sed in risus ac felis varius blandit.
