@@ -27,6 +27,9 @@ I’m currently looking for roles in data analytics and front-end development.
 
 **[To Do Ta Da](/layce-smith/projects/)**: a React task dashboard I designed and built from wireframe to deployment, with drag-and-drop prioritization and data that persists between visits. [Try the live app →](https://leafy-capybara-0d6161.netlify.app/)
 
-https://github.com/user-attachments/assets/840fbea7-1672-499c-a95e-ba20b9772f0f
+<video src="{{ '/assets/video/to-do-ta-da-demo.mp4' | relative_url }}"
+       controls muted playsinline
+       style="width: 100%; height: auto; border-radius: 8px;">
+</video>
 
 
