@@ -4,7 +4,7 @@
     "label": "UX Researcher → Data Analyst",
     "email": "laycedsmith@gmail.com",
     "summary": "UX researcher with 2+ years of experience, finishing a second degree in computer science and building interactive dashboards and web apps.",
-    "location": { "region": "[Denver, CO]" },
+    "location": { "region": "Denver, CO" },
     "profiles": [
       { "network": "LinkedIn", "username": "laycesmith", "url": "https://www.linkedin.com/in/laycesmith" },
       { "network": "GitHub", "username": "lasm5605", "url": "https://github.com/lasm5605" }
@@ -14,8 +14,8 @@
     {
       "name": "EasyPost",
       "position": "UX Research Analyst",
-      "startDate": "June 2024",
-      "endDate": "Septmeber 2026",
+      "startDate": "Jun 2024",
+      "endDate": "Sept 2026",
       "highlights": [
         "Contributed to product road maps and UX design mock ups by conducting quantitative and qualitative research via internal and user interviews/surveys, competitive and market research, product engagement analysis tools, etc.",
         "Documented and present key data and insights to foster interdepartmental alignment"
@@ -27,14 +27,14 @@
       "institution": "University of Colorado Boulder",
       "area": "Computer Science",
       "studyType": "B.S.",
-      "startDate": "January 2024",
-      "endDate": "December 2027"
+      "startDate": "Jan 2024",
+      "endDate": "Dec 2027"
     },
     {
       "institution": "University of Texas at Austin",
       "area": "English",
       "studyType": "B.A.",
-      "endDate": "December 2013"
+      "endDate": "Dec 2013"
     }
   ],
   "projects": [
