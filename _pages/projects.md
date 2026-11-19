@@ -16,6 +16,7 @@ horizontal: false
   </a>
   {% assign categorized_projects = site.projects | where: "category", category %}
   {% assign sorted_projects = categorized_projects | sort: "importance" %}
+  {% if page.horizontal %}
     <div class="container">
       <div class="row row-cols-1 row-cols-md-2">
         {% for project in sorted_projects %}
@@ -23,5 +24,12 @@ horizontal: false
         {% endfor %}
       </div>
     </div>
+  {% else %}
+    <div class="row row-cols-1 row-cols-md-3">
+      {% for project in sorted_projects %}
+        {% include projects.liquid %}
+      {% endfor %}
+    </div>
+  {% endif %}
 {% endfor %}
 </div>
