@@ -7,8 +7,6 @@ importance: 1
 category: web
 ---
 
-# To Do Ta Da: A React Task Dashboard
-
 **[Live demo](https://leafy-capybara-0d6161.netlify.app/)** · **[Source code](https://github.com/lasm5605/ReactTaskDashboard)**
 
 **Role:** Designer and developer (solo project)
